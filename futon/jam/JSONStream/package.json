@@ -1,0 +1,10 @@
+{
+  "name": "JSONStream"
+, "main" : "index.js"
+, "version": "0.2.0-1"
+, "description": "a streaming JSON parser, for AMD"
+, "dependencies": {
+    "stream": null,
+    "events" : null
+  }
+}

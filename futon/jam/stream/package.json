@@ -1,0 +1,10 @@
+{
+  "name": "stream",
+  "main" : "stream.js",
+  "description": "A node port of the 'stream' interface.",
+  "version": "0.0.1",
+  "categories": ["node.js", "utils"],
+   "dependencies": {
+        "events": null
+   }
+}
