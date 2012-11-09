@@ -15,6 +15,11 @@ var jam = {
             "main": "couchr-browser.js"
         },
         {
+            "name": "director",
+            "location": "jam/director",
+            "main": "director.js"
+        },
+        {
             "name": "domReady",
             "location": "jam/domReady",
             "main": "domReady.js"
@@ -23,6 +28,16 @@ var jam = {
             "name": "events",
             "location": "jam/events",
             "main": "events.js"
+        },
+        {
+            "name": "handlebars",
+            "location": "jam/handlebars",
+            "main": "handlebars.js"
+        },
+        {
+            "name": "hbt",
+            "location": "jam/hbt",
+            "main": "hbt.js"
         },
         {
             "name": "jquery",
@@ -40,9 +55,24 @@ var jam = {
             "main": "lessc.js"
         },
         {
+            "name": "md5",
+            "location": "jam/md5",
+            "main": "md5.js"
+        },
+        {
+            "name": "pouchdb",
+            "location": "jam/pouchdb",
+            "main": "pouch.amd.alpha.js"
+        },
+        {
             "name": "querystring",
             "location": "jam/querystring",
             "main": "querystring.js"
+        },
+        {
+            "name": "simple-uuid",
+            "location": "jam/simple-uuid",
+            "main": "uuid.js"
         },
         {
             "name": "stream",
@@ -66,7 +96,11 @@ var jam = {
         }
     ],
     "version": "0.2.11",
-    "shim": {}
+    "shim": {
+        "director": {
+            "exports": "Router"
+        }
+    }
 };
 
 if (typeof require !== "undefined" && require.config) {
