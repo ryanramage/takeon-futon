@@ -15,7 +15,7 @@ Getting Started
 
 
      git clone https://github.com/Futon/takeon-futon
-     cd futon
+     cd takeon-futon/futon
      erica push futon
 
 See it as a couchapp on ```http://localhost:5984/futon/_design/futon/_rewrite/```
@@ -33,7 +33,7 @@ If you want to minimize everything to almost one resource (less, css, javascript
 You can also run it standalone against cors enabled couchdbs as follows
 
     git clone https://github.com/Futon/takeon-futon
-    cd futon
+    cd takeon-futon/futon
     python  -m SimpleHTTPServer
 
 And visit  ```http://localhost:8000/```
