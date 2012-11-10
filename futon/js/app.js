@@ -5,15 +5,16 @@ define('js/app',[
     'director',
     'pouchdb',
     'url',
+    'js/controller',
     'js/main_menu/index',
     'lessc!css/main.less'
 ],
-function($, _,  events, director, pouchdb, url, main_menu){
+function($, _,  events, director, pouchdb, url, controller, main_menu){
     var exports = {},
         emitter = new events.EventEmitter(),
 
         // blend the known module routes together.
-        routes = _.extend({}, main_menu.routes()),
+        routes = _.extend({}, controller.routes(), main_menu.routes()),
         router = director.Router(routes),
 
         opts = {
@@ -34,7 +35,7 @@ function($, _,  events, director, pouchdb, url, main_menu){
                 opts.settings_pouchdb = settings_pouchdb;
             }
             // init the known modules with the options
-            _.invoke([main_menu], 'init', opts);
+            _.invoke([main_menu, controller], 'init', opts);
             callback(null);
         });
 

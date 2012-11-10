@@ -31,7 +31,6 @@ function($, couchr, main_menu_t){
 
 
     function local_couch(cb) {
-
         // swap for couchr. couchr is adding a query param that couch does not like
         $.getJSON('_couchdb', function(data) {
             cb(null, data);
