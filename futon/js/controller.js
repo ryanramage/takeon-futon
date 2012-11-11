@@ -27,7 +27,7 @@ define(['underscore', 'couchr', 'url'], function(_, couchr, url) {
 
             // doc routes
             '/url/*/*/_all_docs' : controller._all_docs,
-            '/url/*/*/_changes' : controller._all_docs,
+            '/url/*/*/_changes' : controller._changes,
             '/url/*/*/_security' : controller._security,
             '/url/*/*/_design/*/_info' : controller.ddoc_info,
             '/url/*/*/_design/*/_view/*'   : controller.ddoc_view,
@@ -135,6 +135,7 @@ define(['underscore', 'couchr', 'url'], function(_, couchr, url) {
         if (decoded === '_couch') {
             decoded = url.resolve(window.location, './_couchdb');
         }
+
         if (decoded !== controller.current_couch_root && _.isString(db)) {
             emitter.emit('db_url_change', decoded, db);
         } else if (_.isString(db) && db !== controller.current_couch_db) {

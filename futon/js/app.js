@@ -7,9 +7,10 @@ define('js/app',[
     'url',
     'js/controller',
     'js/main_menu/index',
+    'js/database/index',
     'lessc!css/main.less'
 ],
-function($, _,  events, director, pouchdb, url, controller, main_menu){
+function($, _,  events, director, pouchdb, url, controller, main_menu, database){
     var exports = {},
         emitter = new events.EventEmitter(),
 
@@ -35,7 +36,7 @@ function($, _,  events, director, pouchdb, url, controller, main_menu){
                 opts.settings_pouchdb = settings_pouchdb;
             }
             // init the known modules with the options
-            _.invoke([main_menu, controller], 'init', opts);
+            _.invoke([main_menu, controller, database], 'init', opts);
             callback(null);
         });
 
