@@ -1,6 +1,11 @@
 var jam = {
     "packages": [
         {
+            "name": "ace",
+            "location": "jam/ace",
+            "main": "ace.js"
+        },
+        {
             "name": "async",
             "location": "jam/async",
             "main": "./lib/async"
