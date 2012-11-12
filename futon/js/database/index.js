@@ -26,13 +26,25 @@ define([
         var all_docs = new AllDocs(path);
         var json = all_docs.fetch();
 
+        var queued = [];
+
+        var total = 0;
+
+        $results = $selector.find('.results');
+        var throttled_show = _.throttle(function(){
+            console.log(queued);
+            $results.append(all_docs_row_t(queued));
+            queued.length = 0;
+            console.log('shown: ' + total);
+        }, 2);
+
         json.on('data', function(row) {
             if (row) {
+                row.total = total++;
                 row.row_id = _.escape(row.id);
                 row.value_json = JSON.stringify(row.value);
-                _.defer(function(){
-                    $selector.find('.results').append(all_docs_row_t(row));
-                });
+                queued.push(row);
+                throttled_show();
 
             }
         });
