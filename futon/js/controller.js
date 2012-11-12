@@ -35,6 +35,7 @@ define(['underscore', 'couchr', 'url'], function(_, couchr, url) {
             '/url/*/*/_design/*/_show/*'   : controller.ddoc_show,
             '/url/*/*/_design/*/_list/*/*' : controller.ddoc_list,
             '/url/*/*/_design/*/_list/*'   : controller.ddoc_list,
+            '/url/*/*/_design/*'   : controller.ddoc_doc,
             '/url/*/*/*/*' : controller.attachment,
             '/url/*/*/*' : controller.doc,
             '/url/*/*/' : controller._all_docs,
@@ -88,6 +89,11 @@ define(['underscore', 'couchr', 'url'], function(_, couchr, url) {
     controller.doc = function(couch, db, doc) {
         couch = set_couch_url(couch, db);
         emitter.emit('doc', couch, db, doc);
+    }
+    controller.ddoc_doc = function(couch, db, doc) {
+        couch = set_couch_url(couch, db);
+        var ddoc_name = '_design/' + doc;
+        emitter.emit('doc', couch, db, ddoc_name);
     }
     controller._security = function(couch, db) {
         couch = set_couch_url(couch, db);
