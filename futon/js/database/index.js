@@ -30,7 +30,10 @@ define([
             if (row) {
                 row.row_id = _.escape(row.id);
                 row.value_json = JSON.stringify(row.value);
-                $selector.find('.results').append(all_docs_row_t(row));
+                _.defer(function(){
+                    $selector.find('.results').append(all_docs_row_t(row));
+                });
+
             }
         });
         json.on('end', function () {
