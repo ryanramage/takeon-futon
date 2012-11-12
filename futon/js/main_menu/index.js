@@ -52,10 +52,10 @@ function($, couchr, main_menu_t, known_couch_t){
     // Try and find some local couch roots.
     function local_couch(cb) {
         // swap for couchr. couchr is adding a query param that couch does not like
-        $.getJSON('_couchdb', function(data) {
-            data.url = '_couchdb';
-            cb(null, data);
-        })
+        ///$.getJSON('_couchdb', function(data) {
+        ///    data.url = '_couchdb';
+        //    cb(null, data);
+        //})
         couchr.get('/', function(err, data){
             if (!err && data.couchdb) {
                 data.url = window.location.protocol + '//' + window.location.host;

@@ -50,6 +50,11 @@ var jam = {
             "main": "jquery.js"
         },
         {
+            "name": "jquery.event.drag",
+            "location": "jam/jquery.event.drag",
+            "main": "jquery.event.drag.js"
+        },
+        {
             "name": "JSONStream",
             "location": "jam/JSONStream",
             "main": "index.js"
@@ -78,6 +83,11 @@ var jam = {
             "name": "simple-uuid",
             "location": "jam/simple-uuid",
             "main": "uuid.js"
+        },
+        {
+            "name": "SlickGrid",
+            "location": "jam/SlickGrid",
+            "main": "slick.grid.js"
         },
         {
             "name": "stream",

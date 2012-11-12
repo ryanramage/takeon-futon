@@ -37,8 +37,8 @@ define(['underscore', 'couchr', 'url'], function(_, couchr, url) {
             '/url/*/*/_design/*/_list/*'   : controller.ddoc_list,
             '/url/*/*/*/*' : controller.attachment,
             '/url/*/*/*' : controller.doc,
-            '/url/*/*/' : controller.db_root,
-            '/url/*/*' : controller.db_root,
+            '/url/*/*/' : controller._all_docs,
+            '/url/*/*' : controller._all_docs ,
             '/url/*/' : controller.couch_root,
             '/url/*' : controller.couch_root
         }
@@ -162,13 +162,17 @@ define(['underscore', 'couchr', 'url'], function(_, couchr, url) {
         }
         if (!db) return;
 
-        var path = url.resolve(root, '/' + db);
+        // give some of the other stuff breathing room.
+        _.delay(function(){
+            var path = url.resolve(root, '/' + db);
 
 
-        controller.current_feed = couchr.changes(path);
-        controller.current_feed.on('change', function(change) {
-            emitter.emit('doc_change', change);
-        });
+            controller.current_feed = couchr.changes(path);
+            controller.current_feed.on('change', function(change) {
+                emitter.emit('doc_change', change);
+            });
+        }, 100)
+
 
     }
 

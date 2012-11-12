@@ -1,0 +1,26 @@
+{
+    "name": "jquery.event.drag",
+    "version": "2.2.0",
+    "description": "Drag events for jquery.",
+    "keywords": [
+        "jquery",
+        "events",
+        "drag"
+    ],
+
+    "main": "jquery.event.drag.js",
+    "dependencies" : {
+        "jquery": ">1.4.2"
+    },
+    "include" : ["jquery.event.drag.js"],
+
+    "repository": "git://github.com/threedubmedia/jquery.threedubmedia.git",
+    "homepage": "https://github.com/threedubmedia/jquery.threedubmedia",
+    "url" : "https://github.com/threedubmedia/jquery.threedubmedia",
+    "maintainers":[
+        {
+            "name" : "Three Dub Media",
+            "web" : "https://github.com/threedubmedia"
+        }
+    ]
+}

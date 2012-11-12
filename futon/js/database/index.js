@@ -2,10 +2,10 @@ define([
     'jquery',
     'underscore',
     'url',
+    'SlickGrid',
     'js/api/AllDocs',
-    'hbt!js/database/all_docs_table',
-    'hbt!js/database/all_docs_row'
-], function ($, _, url, AllDocs, all_docs_table_t, all_docs_row_t) {
+    'hbt!js/database/all_docs_table'
+], function ($, _, url, sg, AllDocs, all_docs_table_t) {
     var database = {},
         selector = '.main',
         options,
@@ -16,42 +16,102 @@ define([
         selector = opts.selector;
         emitter = opts.emitter;
         emitter.on('_all_docs', _all_docs);
-        emitter.on('doc_change', update_doc_rows)
+        emitter.on('doc_change', update_doc_rows);
+
     }
 
+    function json_display(row, cell, value, columnDef, dataContext) {
+        return '<pre><code class="language-json">' + value + '</code></pre>';
+    }
+
+
     function _all_docs(couch, db) {
-        var $selector = $(selector);
-        $selector.html(all_docs_table_t());
-        var path = url.resolve(couch, ['', db, '_all_docs'].join('/'));
-        var all_docs = new AllDocs(path);
-        var json = all_docs.fetch();
+        var $selector = $(selector),
+            rows = [],
+            columns = [
+                {
+                    name : 'Key',
+                    field : 'key',
+                    id : 'key'
+                },
+                {
+                    name : 'ID',
+                    field : 'id',
+                    id : 'id'
+                },
+                {
+                    name : 'Value',
+                    field : 'value_json',
+                    id : 'value_json',
+                    formatter : json_display,
+                    width: 120
+                }
+            ],options = {
+                enableCellNavigation: false,
+                enableColumnReorder: false,
+                enableCellNavigation: true,
+                forceFitColumns : true,
+                rowHeight: 32
+            },
+            path, all_docs, json, slickgrid, total, throttled_update;
 
-        var queued = [];
+        $selector.html(all_docs_table_t({height: $(window).height()  }));
+        slickgrid = new Slick.Grid("#grid", rows, columns, options);
 
-        var total = 0;
 
-        $results = $selector.find('.results');
-        var throttled_show = _.throttle(function(){
-            console.log(queued);
-            $results.append(all_docs_row_t(queued));
-            queued.length = 0;
-            console.log('shown: ' + total);
-        }, 2);
+        path = url.resolve(couch, ['', db, '_all_docs'].join('/'));
+        all_docs = new AllDocs(path);
+        json = all_docs.fetch();
+        total = 0;
+
+        var update = function(){
+            slickgrid.updateRowCount();
+            slickgrid.render();
+        };
+
+        var first_update = _.once(function(){
+            update();
+            throttled_update = _.throttle(update, 30);
+        });
+
+
+        throttled_update = first_update;
+
 
         json.on('data', function(row) {
             if (row) {
                 row.total = total++;
                 row.row_id = _.escape(row.id);
                 row.value_json = JSON.stringify(row.value);
-                queued.push(row);
-                throttled_show();
-
+                rows.push(row);
+                throttled_update();
             }
         });
         json.on('end', function () {
-            console.log('end');
         });
 
+        slickgrid.onClick.subscribe(function (e) {
+          var cell = slickgrid.getCellFromEvent(e);
+          var doc_id = rows[cell.row].id;
+          openDoc(couch, db, doc_id);
+          e.stopPropagation();
+
+        });
+
+        // would be nice to have a preview doc here.
+        slickgrid.onMouseEnter.subscribe(function (e) {
+          var cell = slickgrid.getCellFromEvent(e);
+
+
+        });
+
+
+    }
+
+
+    function openDoc(couch, db, doc_id) {
+        var route = '/url/' + encodeURIComponent(couch) + '/' + db + '/' + doc_id
+        options.router.setRoute(route);
     }
 
 

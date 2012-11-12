@@ -1,0 +1,31 @@
+{
+    "name": "SlickGrid",
+    "version": "2.0.2",
+    "description": "A lightning fast JavaScript grid/spreadsheet.",
+    "dependencies": {
+        "text": "2.0.2"
+    },
+    "keywords": [
+        "ui",
+        "grid",
+        "spreadsheet",
+        "table"
+    ],
+    "repository": "git://github.com/mleibman/SlickGrid.git",
+    "homepage": "https://github.com/mleibman/SlickGrid",
+    "url" : "https://github.com/mleibman/SlickGrid",
+    "maintainers":[
+        {
+            "name" : "Michael Leibman",
+            "web" : "https://github.com/mleibman"
+        }
+    ],
+
+    "main": "slick.grid.js",
+    "dependencies" : {
+        "jquery" : ">1.4.2",
+        "jquery.event.drag" : "2.2.0"
+    }
+
+
+}
