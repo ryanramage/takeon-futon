@@ -30,6 +30,11 @@ var jam = {
             "main": "events.js"
         },
         {
+            "name": "filesize",
+            "location": "jam/filesize",
+            "main": "filesize.js"
+        },
+        {
             "name": "handlebars",
             "location": "jam/handlebars",
             "main": "handlebars.js"

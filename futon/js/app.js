@@ -6,10 +6,11 @@ define('js/app',[
     'url',
     'js/controller',
     'js/main_menu/index',
+    'js/server/index',
     'js/database/index',
     'lessc!css/main.less'
 ],
-function($, _,  events, director,  url, controller, main_menu, database){
+function($, _,  events, director,  url, controller, main_menu, server, database){
     var exports = {},
         emitter = new events.EventEmitter(),
 
@@ -29,7 +30,7 @@ function($, _,  events, director,  url, controller, main_menu, database){
     exports.init = function(callback) {
 
         // init the known modules with the options
-        _.invoke([main_menu, controller, database], 'init', opts);
+        _.invoke([main_menu, controller, server, database], 'init', opts);
         callback(null);
 
 

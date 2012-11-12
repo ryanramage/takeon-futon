@@ -1,0 +1,20 @@
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Docs</th>
+            <th>Update Seq</th>
+        </tr>
+    </thead>
+    <tbody class="listing">
+        {{#each .}}
+            <tr id="{{db}}">
+                <td class="name"><a href="{{url}}">{{db}}</a></td>
+                <td class="size"></td>
+                <td class="docs"></td>
+                <td class="seq"></td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

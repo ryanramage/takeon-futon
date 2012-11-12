@@ -46,6 +46,7 @@ define(['underscore', 'couchr', 'url'], function(_, couchr, url) {
 
 
     controller.couch_root = function(couch) {
+        console.log('couch route!');
         couch = set_couch_url(couch);
         emitter.emit('couch_root', couch);
     }
