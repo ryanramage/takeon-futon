@@ -3,14 +3,13 @@ define('js/app',[
     'underscore',
     'events',
     'director',
-    'pouchdb',
     'url',
     'js/controller',
     'js/main_menu/index',
     'js/database/index',
     'lessc!css/main.less'
 ],
-function($, _,  events, director, pouchdb, url, controller, main_menu, database){
+function($, _,  events, director,  url, controller, main_menu, database){
     var exports = {},
         emitter = new events.EventEmitter(),
 
@@ -29,16 +28,10 @@ function($, _,  events, director, pouchdb, url, controller, main_menu, database)
     // This is where you will put things you can do before the dom is loaded.
     exports.init = function(callback) {
 
-        // make a settings pouch available to platforms that support it
-        Pouch('idb://settings', function(err, db) {
-            if (!err) {
-                settings_pouchdb = db;
-                opts.settings_pouchdb = settings_pouchdb;
-            }
-            // init the known modules with the options
-            _.invoke([main_menu, controller, database], 'init', opts);
-            callback(null);
-        });
+        // init the known modules with the options
+        _.invoke([main_menu, controller, database], 'init', opts);
+        callback(null);
+
 
     }
 
