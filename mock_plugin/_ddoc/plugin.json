@@ -1,0 +1,4 @@
+{
+    "type" : "futon-plugin",
+    "main" : "mock"
+}

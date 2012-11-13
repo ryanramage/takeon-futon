@@ -33,8 +33,8 @@ If you want to minimize everything to almost one resource (less, css, javascript
 You can also run it standalone against cors enabled couchdbs as follows
 
     git clone https://github.com/Futon/takeon-futon
-    cd takeon-futon/futon
+    cd takeon-futon
     python  -m SimpleHTTPServer
 
-And visit  ```http://localhost:8000/```
+And visit  ```http://localhost:8000/futon```
 

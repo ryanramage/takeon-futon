@@ -7,7 +7,7 @@ define([
     'underscore',
     'couchr',
     'url',
-    'ace',
+
     './json_format',
     'hbt!js/doc/doc_view'
 ], function (_, couchr, url, ace, json_format, doc_view_t) {
@@ -28,12 +28,12 @@ define([
         var path = url.resolve(couch, ['', db, doc_id].join('/'));
         couchr.get(path, function(err, doc) {
             if (err) return console.log(err);
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/monokai");
-            editor.getSession().setMode("ace/mode/json");
-            editor.getSession().setUseWrapMode(true);
-            editor.setValue(json_format(JSON.stringify(doc)), -1);
-            editor.setReadOnly(true);
+//            var editor = ace.edit("editor");
+//            editor.setTheme("ace/theme/monokai");
+//            editor.getSession().setMode("ace/mode/json");
+//            editor.getSession().setUseWrapMode(true);
+//            editor.setValue(json_format(JSON.stringify(doc)), -1);
+//            editor.setReadOnly(true);
         });
     }
 

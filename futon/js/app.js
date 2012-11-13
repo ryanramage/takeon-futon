@@ -9,9 +9,10 @@ define('js/app',[
     'js/server/index',
     'js/database/index',
     'js/doc/index',
+    '_ddoc/plugin_config',
     'lessc!css/main.less'
 ],
-function($, _,  events, director,  url, controller, main_menu, server, database, doc){
+function($, _,  events, director,  url, controller, main_menu, server, database, plugins, doc){
     var exports = {},
         emitter = new events.EventEmitter(),
 
@@ -32,6 +33,11 @@ function($, _,  events, director,  url, controller, main_menu, server, database,
 
         // init the known modules with the options
         _.invoke([main_menu, controller, server, database, doc], 'init', opts);
+
+        // init loaded plugins
+        console.log(plugins);
+
+
         callback(null);
 
 
