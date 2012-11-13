@@ -87,8 +87,8 @@ function initBaseUrls(topLevelNamespaces) {
 
 function initSender() {
 
-    var EventEmitter = require(null, "ace/lib/event_emitter").EventEmitter;
-    var oop = require(null, "ace/lib/oop");
+    var EventEmitter = require(null, "../lib/event_emitter").EventEmitter;
+    var oop = require(null, "../lib/oop");
     
     var Sender = function() {};
     
@@ -127,7 +127,7 @@ onmessage = function(e) {
     }
     else if (msg.init) {        
         initBaseUrls(msg.tlns);
-        require(null, "ace/lib/fixoldbrowsers");
+        require(null, "../lib/fixoldbrowsers");
         sender = initSender();
         var clazz = require(null, msg.module)[msg.classname];
         main = new clazz(sender);
