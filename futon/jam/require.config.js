@@ -10,6 +10,11 @@ var jam = {
             "location": "jam/bootstrap"
         },
         {
+            "name": "codemirror",
+            "location": "jam/codemirror",
+            "main": "lib/codemirror.js"
+        },
+        {
             "name": "couchr",
             "location": "jam/couchr",
             "main": "couchr-browser.js"

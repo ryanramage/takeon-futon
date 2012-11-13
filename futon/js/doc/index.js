@@ -7,10 +7,11 @@ define([
     'underscore',
     'couchr',
     'url',
-
+    'codemirror',
     './json_format',
-    'hbt!js/doc/doc_view'
-], function (_, couchr, url, ace, json_format, doc_view_t) {
+    'hbt!js/doc/doc_view',
+    'jam/codemirror/mode/javascript/javascript'
+], function (_, couchr, url, CodeMirror, json_format, doc_view_t) {
     var doc_view = {},
           selector = '.main',
           options,
@@ -28,6 +29,16 @@ define([
         var path = url.resolve(couch, ['', db, doc_id].join('/'));
         couchr.get(path, function(err, doc) {
             if (err) return console.log(err);
+
+            var dom = $('#editor').get()[0];
+
+            var editor = CodeMirror(dom, {
+                value : json_format(JSON.stringify(doc)),
+                theme : 'monokai',
+                mode : {name: "javascript", json: true}
+            });
+
+
 //            var editor = ace.edit("editor");
 //            editor.setTheme("ace/theme/monokai");
 //            editor.getSession().setMode("ace/mode/json");
