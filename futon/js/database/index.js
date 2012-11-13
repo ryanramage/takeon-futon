@@ -78,7 +78,7 @@ define([
 
         var first_update = _.once(function(){
             update();
-            throttled_update = _.throttle(update, 30);
+            throttled_update = _.throttle(update, 600);
         });
 
 
