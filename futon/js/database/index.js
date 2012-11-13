@@ -25,7 +25,7 @@ define([
     }
 
 
-    function _all_docs(couch, db) {
+    function _all_docs(couch, db, position) {
         var $selector = $(selector),
             rows = [],
             columns = [
@@ -67,6 +67,15 @@ define([
         var update = function(){
             slickgrid.updateRowCount();
             slickgrid.render();
+            if (position && rows.length > position) {
+
+                _.delay(function(){
+                    console.log('scroll row into view!!!');
+                    console.log(position);
+                    slickgrid.scrollRowToTop(position);
+                }, 10)
+
+            }
         };
 
         var first_update = _.once(function(){
@@ -88,6 +97,7 @@ define([
             }
         });
         json.on('end', function () {
+
         });
 
         slickgrid.onClick.subscribe(function (e) {
@@ -104,6 +114,22 @@ define([
 
 
         });
+
+
+        var save_row = _.debounce(function() {
+            var viewport = slickgrid.getViewport();
+            var top_row = viewport.top;
+            if (_.isFunction(history.replaceState)) {
+                var state = '#/url/' + encodeURIComponent(couch) + '/' + db + '/_all_docs/' + top_row;
+                history.replaceState({}, top_row, state);
+            }
+        }, 200);
+
+
+        slickgrid.onScroll.subscribe(function() {
+            save_row();
+        })
+
 
 
     }

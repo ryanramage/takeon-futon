@@ -27,6 +27,7 @@ define(['underscore', 'couchr', 'url'], function(_, couchr, url) {
 
             // doc routes
             '/url/*/*/_all_docs' : controller._all_docs,
+            '/url/*/*/_all_docs/*' : controller._all_docs,
             '/url/*/*/_changes' : controller._changes,
             '/url/*/*/_security' : controller._security,
             '/url/*/*/_design/*/_info' : controller.ddoc_info,
@@ -67,9 +68,9 @@ define(['underscore', 'couchr', 'url'], function(_, couchr, url) {
         couch = set_couch_url(couch);
         emitter.emit('_replicator', couch);
     }
-    controller._all_docs = function(couch, db) {
+    controller._all_docs = function(couch, db, position) {
         couch = set_couch_url(couch, db);
-        emitter.emit('_all_docs', couch, db);
+        emitter.emit('_all_docs', couch, db, position);
     }
 
     controller._changes = function(couch, db) {
