@@ -70,8 +70,6 @@ define([
             if (position && rows.length > position) {
 
                 _.delay(function(){
-                    console.log('scroll row into view!!!');
-                    console.log(position);
                     slickgrid.scrollRowToTop(position);
                 }, 10)
 
