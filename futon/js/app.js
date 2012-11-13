@@ -1,4 +1,5 @@
 define('js/app',[
+    'require',
     'jquery',
     'underscore',
     'events',
@@ -9,10 +10,9 @@ define('js/app',[
     'js/server/index',
     'js/database/index',
     'js/doc/index',
-    '_ddoc/plugin_config',
     'lessc!css/main.less'
 ],
-function($, _,  events, director,  url, controller, main_menu, server, database, plugins, doc){
+function(require, $, _,  events, director,  url, controller, main_menu, server, database,  doc){
     var exports = {},
         emitter = new events.EventEmitter(),
 
@@ -35,7 +35,14 @@ function($, _,  events, director,  url, controller, main_menu, server, database,
         _.invoke([main_menu, controller, server, database, doc], 'init', opts);
 
         // init loaded plugins
-        console.log(plugins);
+        require(['_ddoc/plugin_config'], function(plugins) {
+            _.each(plugins, function(plugin){
+                if (_.isFunction(plugin.init)) {
+                    plugin.init(opts);
+                }
+            })
+        })
+
 
 
         callback(null);

@@ -13,7 +13,7 @@ function list(head, req) {
 
     send('], function () {');
     send('    console.log("' + count +'  plugins loaded ");     ');
-    send('    return {};');
+    send('    return Array.prototype.slice.call(arguments);');
     send('});');
 
 }
