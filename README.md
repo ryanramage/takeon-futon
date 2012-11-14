@@ -31,7 +31,7 @@ Features
 Requirements:
 --------------
 
- 1. (Optional) [erica](https://github.com/ryanramage/erica)
+ 1. (Optional) [erica](https://github.com/benoitc/erica)
  2. (Optional) [jamjs](http://jamjs.org/docs) This is used in the make command to minimize the build.
 
 
@@ -73,7 +73,7 @@ Currently there are some issues with the filesystem and cross domain requests bl
 
 ### As a couchapp
 
-[erica](https://github.com/ryanramage/erica) is required to load it as a couchapp.
+[erica](https://github.com/benoitc/erica) is required to load it as a couchapp.
 
      git clone https://github.com/Futon/takeon-futon
      cd takeon-futon/futon
