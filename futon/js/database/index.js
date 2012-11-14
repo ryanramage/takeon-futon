@@ -201,15 +201,16 @@ define([
         var row_num = doc_id_row[row_id];
         var row = rows[row_num];
         if (row) {
-            rows[row].stale = true;
-            slickgrid.invalidateRow(row);
+            rows[row_num].stale = true;
+            slickgrid.invalidateRow(row_num);
+            slickgrid.render();
         } else {
             // new around here?
             // what to do?
         }
 
 
-        slickgrid.render();
+
     }
 
     return database;
