@@ -37,7 +37,7 @@ define([
                 theme : 'monokai',
                 mode : {name: "javascript", json: true}
             });
-
+            editor.setSize(null, $(window).height() );
 
 //            var editor = ace.edit("editor");
 //            editor.setTheme("ace/theme/monokai");

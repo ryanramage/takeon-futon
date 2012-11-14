@@ -31,10 +31,10 @@
 
         var path = url.parse(this.settings.url);
         path.query = {
-            limit:  10000
+            limit:  10000,
+            include_docs : false
         }
         var target = url.format(path);
-        console.log(target);
 
         this.xhr = new XMLHttpRequest();
         this.xhr.open("GET", target, true);

@@ -6,6 +6,15 @@
   font: normal 10px "DejaVu Sans Mono",Menlo,Courier,monospace;
 }
 
+.slick-cell {
+  border-bottom: none !important;
+  border-right: 1px dotted #eee !important;
+}
+
+.slick-header-column {
+  background-color: #efefef;
+}
+
 .slick-row:hover {
   background-color: @grayLighter;
   cursor: pointer;
@@ -18,4 +27,12 @@
 
 .slick-row pre {
   padding: 0;
+  background: none;
+  border: none;
+  font-size: 8px;
+  line-height: 8px;
+}
+
+.slick-row pre code {
+  font-size: 9px;
 }
